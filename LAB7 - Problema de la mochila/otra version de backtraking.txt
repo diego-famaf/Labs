@@ -1,0 +1,95 @@
+#include <stdio.h>
+#include "stdlib.h"
+#include "item.h"
+#include "string.h"
+#include "stdbool.h"
+
+
+
+unsigned int maxim(unsigned int num1, unsigned int num2){ 
+  unsigned int result;
+   if (num1 > num2){
+   
+      result = num1;
+   }
+   else{
+   
+      result = num2;
+   }
+  return result;
+}
+
+value_t knapsack_backtracking(item_t* items, unsigned int array_length, weight_t max_weight)
+{
+        //unsigned int i=0;
+        // unsigned int j=0;
+	value_t **moch = calloc(array_length,sizeof(value_t*));
+	//weight_t **w = calloc(max_weight,sizeof(weight_t*));
+
+	for(unsigned int i=0;i<array_length ;i++){
+             moch[i] = calloc(max_weight,sizeof(value_t));
+      
+	}
+	for(unsigned int i=0u;i<array_length;i++){
+               for(unsigned int j=0u;j<max_weight;j++){
+               
+                 //weight_t w = item_weight(items[i]);
+       
+	         if (j==0){
+		    moch[i][j] = 0;
+                 }
+	         else if(i==0){
+		   moch[i][j] = 0;
+	         }
+     
+	         else if(item_weight(items[i])>j){
+		   moch[i][j] = knapsack_backtracking(items,array_length-1,j);
+	         }
+      
+	         else{
+		   moch[i][j] = maxim(knapsack_backtracking(items,array_length-1,j),item_value(items[i])+knapsack_backtracking(items,array_length-1,j-item_weight(items[i])));
+	         }
+              }
+        }
+     return moch[array_length][max_weight];
+    
+}
+value_t knapsack_dynamic(item_t* items, unsigned array_length, weight_t max_weight){
+
+     //pido memoria dinamica para el bloque de filas de una matriz de elementos             
+           
+     value_t **moch = calloc((array_length +1u),sizeof(value_t*));
+     //pido memoria dinamica para el bloque de columnas de una matriz de elementos
+      for(unsigned int i=0;i<array_length +1u;i++){
+             moch[i] = calloc(max_weight,sizeof(value_t));
+      }
+
+      for(unsigned int i=0;i<array_length;i++){
+             moch[i][0] = 0 ;
+      }
+      
+      for(unsigned int j=1;j<max_weight;j++){
+             moch[0][j] = 0 ;
+
+      }
+
+    //weight_t **w = calloc(max_weight,sizeof(weight_t*));
+   
+      for(unsigned int i=1u;i<array_length + 1;i++){
+             for(unsigned int j=1u;j<max_weight + 1;j++){
+                weight_t w = item_weight(items[i-1]);
+                if(w > j){
+                  moch[i][j] = moch[i-1][j];
+                }
+                else {
+                  moch[i][j] = maxim(moch[i-1][j],item_value(items[i-1]) + moch[i-1][j-w]);
+                }
+                
+             }
+      }
+
+
+
+   return (moch[array_length][max_weight]);
+
+}

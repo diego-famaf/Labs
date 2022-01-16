@@ -1,0 +1,13 @@
+PARA COMPILAR:
+
+$ gcc -Wall -Werror -Wextra -pedantic -std=c99 -g -c set.c
+$ gcc -Wall -Werror -Wextra -pedantic -std=c99 -g -c test_set.c
+$ gcc -no-pie -Wall -Werror -Wextra -pedantic -std=c99 -g -o test_set list-x86_64.o test_set.o set.o
+$ valgrind --leak-check=full -s ./test_set
+
+
+
+
+
+
+

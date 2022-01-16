@@ -1,0 +1,6 @@
+NOTAS PARA LAB 04
+
+cMiguel  17:32
+Hola, esta es la post de dict_empty "* POS: {dict --> dict /\ dict_length(dict) == 0}" no me sale interpretar que significa dict --> dict
+Gonzalo Peralta  17:50
+dict tal que dict y la longitud de dict es 0

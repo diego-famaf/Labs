@@ -1,0 +1,15 @@
+NOTAS PARA ALGORITMO DE DIJKSTRA
+
+-el grafo se va a representar con una matriz
+
+-Costos L:array[1..n,1..n]of Nat .Esto quiere decir :
+                 |     |
+            vertices de  vertices de
+            la fila     la columna
+
+
+
+cada lugar me dice el costo para ir del vertice de la fila al vertice de la columna de la matriz
+
+-D[j] retorna el costo del camino de costo minimo que 
+va de v a j

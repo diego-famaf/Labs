@@ -1,0 +1,7 @@
+PARA COMPILAR:
+
+En la consola escribir  "make" sin comillas
+
+PARA EJECUTAR:
+
+$ ./Dijkstra input/example_graph_1.in  

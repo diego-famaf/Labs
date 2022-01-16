@@ -1,0 +1,29 @@
+unsigned int cima_binary_search_rec(int a[], unsigned int lft, unsigned int rgt){
+     unsigned int mid;
+     unsigned int cima;
+    
+     if(lft == rgt){//caso de un elemento en el array
+        return rgt;
+     }
+     if(a[lft] > a[lft+1]){ //caso [7,6]  aca podria ser solo con: orddescendente(a,lft,rgt)?
+         return lft;
+     }
+     if(lft < rgt){
+        mid = (lft+rgt)/2;
+     }
+     if(a[mid-1] < a[mid] && a[mid] < a[mid+1]){      //caso ej [1,2,6,7,3] 
+         cima = cima_binary_search_rec(a, mid+1, rgt);
+     }
+     else if(a[mid-1] < a[mid] && a[mid] > a[mid+1]){ // && ordasc(a,lft,mid) caso ej [3,6,7,2,1] cima = 2 mid coincide con la cima
+         cima = mid;
+     }
+     else if(a[mid-1] > a[mid] && a[mid-1] > a[mid+1]){ //caso ej [3,7,6,2,1]
+         cima = cima_binary_search_rec(a, lft, mid);
+     }
+     return cima;
+}
+unsigned int cima_binary_search(int a[]){
+  unsigned int cima = cima_binary_search_rec(a,0,4);
+  return cima;
+}
+

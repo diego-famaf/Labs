@@ -1,0 +1,4 @@
+value_t** table= calloc((array_length+1),sizeof(value_t*));
+for (unsigned int i = 0u; i < max_weight+1; ++i){
+       table[i]=calloc((array_length),sizeof(value_t));
+}

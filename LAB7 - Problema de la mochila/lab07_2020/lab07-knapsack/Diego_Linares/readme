@@ -1,0 +1,27 @@
+
+
+PARA COMPILAR:
+
+make
+
+PARA EJECUTAR:
+
+Bactraking
+$ valgrind --show-reachable=yes --leak-check=full ./Knapsack -b -f input/*.in
+
+Dinamica
+$ valgrind --show-reachable=yes --leak-check=full ./Knapsack -d -f input/*.in
+
+Bactraking y dinamica
+$ valgrind --show-reachable=yes --leak-check=full ./Knapsack -bd -f input/*.in
+
+Dinamica mostrando seleccion de items
+$ valgrind --show-reachable=yes --leak-check=full ./Knapsack -ds -f input/*.in
+
+Bactraking y dinamica mostrando seleccion y verificando el valor obtenido
+$ valgrind --show-reachable=yes --leak-check=full ./Knapsack -bdst -f input/*.in
+
+
+PARA BORRAR 
+
+make clean

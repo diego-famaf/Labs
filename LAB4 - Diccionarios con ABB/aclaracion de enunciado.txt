@@ -1,0 +1,5 @@
+lramos(opens in new tab)  3:47 PM
+@channel ACLARACIONES del enunciado:
+
+    Va con spoiler: dict_empy debe devolver NULL asi que la pos que chequee dict != NULL esta mal. Saquenla del ASSERT y no le lleven el apunte. Nuestra implementación de dict asume NULL al dict vacio
+    Olvidensé lo de O(1). Lo dejamos como "punto estrella". dict_length solo debe decir cuantos elementos tiene el dict sin tener en cuenta el orden algoritmico

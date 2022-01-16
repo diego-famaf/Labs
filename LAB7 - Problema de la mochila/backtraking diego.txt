@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include "stdlib.h"
+#include "item.h"
+#include "string.h"
+
+
+
+
+unsigned int max(unsigned int num1, unsigned int num2){ 
+  unsigned int result;
+   if (num1 > num2){
+   
+      result = num1;
+   }
+   else{
+   
+      result = num2;
+   }
+  return result;
+}
+
+
+value_t** knapsack_backtracking(item_t* items,unsigned int array_length, weight_t max_weight){
+
+	value_t** maximo = calloc(array_length,sizeof(value_t*));
+	
+	for(unsigned int i=0u;i<array_length;i++){
+		maximo[i] = calloc(1,sizeof(value_t));
+	}
+	  
+     
+    
+	
+ for(unsigned int i=0u;i<array_length;i++){
+  for(unsigned int j=0u;j<max_weight;j++){
+       weight_t w[i] = item_weight(items[i]);
+       
+	 if (j==0){
+		maximo = 0;
+          }
+	 else if(i==0){
+		maximo = 0;
+	 }
+     
+	 else if(w[i]>j){
+		maximo = knapsack_backtracking(w,i-1,j);
+	  }
+      
+	  else{
+		maximo = max(knapsack_backtracking(w,i-1,j),item_value(items[i])+knapsack_backtracking(w,i-1,j-w[i]));
+	}
+  }
+ }
+	return maximo;
+ }

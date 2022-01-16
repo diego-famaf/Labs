@@ -1,0 +1,22 @@
+if (!dict_exists(dict->key, word)) {  
+     	return dict;
+        }  
+	    else{
+    	  if(dict_lenght==1){//caso no hijos
+    	     dict->key = dict_destroy(dict->key);
+          }
+        
+          //caso de un hijo
+          else if(dict_lenght==2){
+          	if(string_eq(dict->key,word)){
+          	  	dict->key = dict_destroy(dict->key);
+          	  	 
+          	  }
+          	  if(string_less(dict->key,word)){
+          	  	
+          	  	
+          	  }
+          	  
+      }
+        }
+		  

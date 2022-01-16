@@ -1,0 +1,16 @@
+value_t knapsack_backtracking(item_t* items, unsigned int array_length, weight_t max_weight){
+
+    value_t value_final;
+
+    if((array_length == 0 && max_weight > 0) || max_weight == 0){ //Si no tengo peso en la mochila  o  Si tengo peso en la mochila pero no tengo items que colocar.
+        value_final = 0;
+    }
+    if(array_length > 0 && (item_weight(items[array_length - 1]) > max_weight)){ //Si tengo peso en la mochila pero el peso del item a colocar es mayor que el peso de la mochila.
+        value_final = knapsack_backtracking(items, array_length - 1, max_weight);
+    }
+    if(array_length > 0 && (item_weight(items[array_length - 1]) <= max_weight)){ //Si tengo peso en la mochila y el peso del item a colocar es menor que el peso de la mochila.
+        value_final = fmax(knapsack_backtracking(items, array_length - 1, max_weight), item_value(items[array_length - 1]) + knapsack_backtracking(items, array_length - 1, max_weight - item_weight(items[array_length - 1])));
+    }
+
+    return value_final;
+}

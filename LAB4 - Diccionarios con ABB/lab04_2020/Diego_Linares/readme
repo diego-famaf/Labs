@@ -1,0 +1,12 @@
+PARA COMPILAR Y EJECUTAR EL PROGRAMA:
+
+$ gcc -Wall -Werror -Wextra -pedantic -std=c99 -g -c dict.c string.c helpers.c dict_helpers.c 
+
+$ gcc -Wall -Werror -Wextra -pedantic -std=c99 -no-pie -g -o diccionario *.o main.c
+
+$ valgrind --leak-check=full -s ./diccionario
+
+
+COMENTARIOS:
+
+Se incluyen 3 archivos con nombre prueba,prueba2,y prueba3,que son diccionarios con palabras y sus definiciones,los cuales se crearon con las opcion de menu dump y despues se probaron con load.

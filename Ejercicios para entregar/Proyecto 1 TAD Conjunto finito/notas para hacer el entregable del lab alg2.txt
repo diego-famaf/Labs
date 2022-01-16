@@ -1,0 +1,65 @@
+Gastonn(se abre una pestaña nueva) 1 may. a la(s) 20:51
+si s es de tipo set
+cuando quiero usar las operaciones de listas  list_*** voy a usar el campo   s->sorted_list?
+onda,  saux->sorted_list= list_copy(s->sorted_list)??
+3 respuestas
+Tomas Torre(se abre una pestaña nueva)  hace 4 días
+Hola, no soy profe, pero hice el proyecto y me funciono todo y si lo tenes que usar asi.
+Gastonn(se abre una pestaña nueva)  hace 4 días
+graciassss
+Tomas Torre(se abre una pestaña nueva)  hace 4 días
+De nada! Si necesitas avisame por privado si tenes alguna duda o algo capas te puedo ayudar!
+-----------------------------------------------------------------------------------------------
+
+En el ejercicio 3 dice que hay que probar las funciones del TAD Conjunto finito cuya implementación no fue incluída en el ejercicio práctico. Se refiere a set_cardinal, set_member, set_elim y set_inters?
+1 respuesta
+MarcosD1(se abre una pestaña nueva)  hace 3 días
+Hola, fijate en test_list en la funcion main ahi te da una pista de como hacerlo tenes que usar casi todas las funciones de set.c
+-----------------------------------------------------------------------------------------------
+Hola! Quisiera consultar una duda técnica sobre el trabajo a entregar de laboratorio, que me pide implementar el TAD Conjunto Finito
+
+Según tengo entendido, la forma en la que se implementó este tipo de dato no es una lista, sino un puntero que apunta a una estructura que contiene a la lista.
+
+Mi duda es: Si yo quiero usar, por ejemplo, la función list_add_at sobre el conjunto s1 ¿Alcanza con poner simplemente s1 = list_add_at(s1, e, n), o tengo que referirme a la lista que está dentro de la estructura a la que se dirige el puntero s1?
+
+Diego Piloni 	
+0:13 (hace 19 horas)
+Hola, no es correcto a list_add_at pasarle un set como argumento. list_add_at espera una lista, no un set.. Son tipos distintos, prestemos atención a los tipos.
+
+Asi que sí, como dijiste después, lo correcto es usar las funciones de lista con la lista que se almacena dentro de la estructura del set.
+
+Es importante que notemos la diferencia que tenemos entre la implementación que hicimos en el teórico y la que se puede hacer en C.
+Recuerden que en C para poder tener encapsulamiento, es decir, poder mostrar solo la interfaz (el .h) sin que se vea cómo represento al TAD, tenemos que usar un puntero a una estructura. O sea, para poder implementar cualquier tipo abstracto de datos, debo representarlo como un puntero a una estructura. De esa manera se encapsula el contenido de la estructura sin que pueda ser accesible desde fuera de la implementación.
+En el teórico no tenemos ese problema, porque asumimos que nuestro lenguaje tiene mecanismo nativo de encapsulamiento. Por esto es que en el teo podemos hacer:
+
+spec Set of T where
+
+en la especificación, sin mostrar cómo está representado el conjunto.
+
+por su parte en el lab tenemos que hacer:
+
+typedef struct s_set * set;
+
+sin mostrar cómo es el struct con el que implemento el set, pero ya tengo una diferencia con el teo, porque sí o sí, un elemento de tipo set es un puntero.
+
+En la implementación del teo luego hago:
+
+implement Set of T where
+
+Set of T = List of T
+
+representando a un conjunto como una lista, es decir, todo elemento de tipo Set of T es de tipo List of T.
+
+Por su parte en el lab, en la implementación defino el struct sdict:
+
+struct s_set {
+    list elems;
+};
+
+con un campo correspondiente a la lista que contiene los elementos.
+
+Esta diferencia hará que todas las operaciones que implementaron en el ejercicio del teórico deban ser adaptadas. No pueden llamar directamente a las funciones de listas para un elemento de tipo set, porque los tipos no coindicen.
+
+Saludos!
+
+Manu
